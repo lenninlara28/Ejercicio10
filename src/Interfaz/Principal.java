@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp 14
@@ -52,6 +54,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Cuantas Fotos Tiene Su Rollo ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        txtFotos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFotosKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtFotos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 140, -1));
 
         cmbConsultar.setBackground(new java.awt.Color(0, 0, 0));
@@ -101,7 +109,9 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,6 +120,12 @@ public class Principal extends javax.swing.JFrame {
     private void cmbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConsultarActionPerformed
         String monto,iva,montototal;
         int nfotos,operacion,impuesto,total;
+        
+        if (txtFotos.getText().trim().isEmpty()){
+         JOptionPane.showMessageDialog(this,"Digite Cuantas Fotos","error", JOptionPane.ERROR_MESSAGE);
+         txtFotos.requestFocusInWindow();}
+        
+        else {
         
        nfotos=Integer.parseInt(txtFotos.getText());
        
@@ -127,8 +143,15 @@ public class Principal extends javax.swing.JFrame {
        txtTotal.setText(montototal);
        
         
-        
+        }
     }//GEN-LAST:event_cmbConsultarActionPerformed
+
+    private void txtFotosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFotosKeyTyped
+        char c=evt.getKeyChar(); 
+          if(Character.isLetter(c)) { 
+              getToolkit().beep(); 
+              evt.consume();}
+    }//GEN-LAST:event_txtFotosKeyTyped
 
     /**
      * @param args the command line arguments
