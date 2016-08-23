@@ -35,9 +35,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        txtIva = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         txtPagar = new javax.swing.JTextField();
-        txtPagar1 = new javax.swing.JTextField();
-        txtPagar2 = new javax.swing.JTextField();
         cmbNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,6 +57,11 @@ public class Principal extends javax.swing.JFrame {
         cmbConsultar.setBackground(new java.awt.Color(0, 0, 0));
         cmbConsultar.setForeground(new java.awt.Color(255, 255, 255));
         cmbConsultar.setText("OK");
+        cmbConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbConsultarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmbConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
@@ -70,9 +75,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel5.setText("Su Monto Total Es:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
-        jPanel1.add(txtPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 70, -1));
-        jPanel1.add(txtPagar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 90, -1));
-        jPanel1.add(txtPagar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, -1));
+
+        txtIva.setEditable(false);
+        jPanel1.add(txtIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 70, -1));
+
+        txtTotal.setEditable(false);
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 90, -1));
+
+        txtPagar.setEditable(false);
+        jPanel1.add(txtPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, -1));
 
         cmbNuevo.setBackground(new java.awt.Color(0, 0, 0));
         cmbNuevo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -84,7 +95,9 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,6 +106,29 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmbConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbConsultarActionPerformed
+        String monto,iva,montototal;
+        int nfotos,operacion,impuesto,total;
+        
+       nfotos=Integer.parseInt(txtFotos.getText());
+       
+       operacion=nfotos*1500;
+       impuesto=(operacion*16)/100;
+       total=operacion+impuesto;
+       
+       monto=String.valueOf(operacion);
+       txtPagar.setText(monto);
+       
+       iva=String.valueOf(impuesto);
+       txtIva.setText(iva);
+       
+       montototal=String.valueOf(total);
+       txtTotal.setText(montototal);
+       
+        
+        
+    }//GEN-LAST:event_cmbConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,8 +175,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtFotos;
+    private javax.swing.JTextField txtIva;
     private javax.swing.JTextField txtPagar;
-    private javax.swing.JTextField txtPagar1;
-    private javax.swing.JTextField txtPagar2;
+    private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
