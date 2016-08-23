@@ -97,6 +97,11 @@ public class Principal extends javax.swing.JFrame {
         cmbNuevo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cmbNuevo.setForeground(new java.awt.Color(255, 255, 255));
         cmbNuevo.setText("Borrar");
+        cmbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNuevoActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmbNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,6 +157,15 @@ public class Principal extends javax.swing.JFrame {
               getToolkit().beep(); 
               evt.consume();}
     }//GEN-LAST:event_txtFotosKeyTyped
+
+    private void cmbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNuevoActionPerformed
+        txtFotos.setText("");
+        txtIva.setText("");
+        txtPagar.setText("");
+        txtTotal.setText("");
+        
+       txtFotos.requestFocusInWindow();
+    }//GEN-LAST:event_cmbNuevoActionPerformed
 
     /**
      * @param args the command line arguments
